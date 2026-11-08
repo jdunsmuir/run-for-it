@@ -21,6 +21,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ec5c564c-f3f8-413e-a175-0b751fe95a2e"
+      }
+    },
+    "owner": "gravelfell"
   }
 }
