@@ -51,6 +51,39 @@ Changes you make to the code hot-reload automatically while `expo start` is runn
 delete-confirmation dialog doesn't render in a browser — `Alert.alert` is a no-op on web in
 React Native — but it works normally in Expo Go.)
 
+## Installing it as a standalone app (no laptop needed)
+
+Expo Go needs your laptop's dev server running every time you open the app. To install it as a
+normal, permanent app on your phone instead (Android only — iOS needs a paid Apple Developer
+account for this), use **EAS Build**:
+
+1. Create a free account at [expo.dev](https://expo.dev), then log in from a terminal (one-time,
+   interactive):
+   ```bash
+   npx eas-cli login
+   ```
+2. Build an installable APK in Expo's cloud:
+   ```bash
+   npx eas-cli build --platform android --profile preview
+   ```
+   This takes a few minutes and ends with a download link. Open that link on your phone and
+   install the APK directly (Android will ask you to allow installs from this source once).
+3. From then on, the app is a normal icon on your phone — no laptop, no dev server.
+
+### Updating it later
+
+Because this app has no custom native code, almost every future change (UI tweaks, new features,
+bug fixes) can be pushed as an **over-the-air update** instead of a full rebuild:
+
+```bash
+npx eas-cli update --branch preview --message "describe the change"
+```
+
+Run that once from your laptop after making changes; the installed app picks it up automatically
+next time it's opened with internet access. A full rebuild (step 2 above) is only needed again if
+you add native code, change the app icon/package id, or add Android permissions — none of which
+this app currently does.
+
 ## Running the tests
 
 ```bash
